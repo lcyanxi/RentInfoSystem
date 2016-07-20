@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts  PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+                         "http://struts.apache.org/dtds/struts-2.3.dtd"
+>
+
+<struts>
+       <constant value="false" name="struts.enable.DynamicMethodInvocation"/>
+        <constant value="false" name="struts.devMode"/>
+       <constant name="struts.i18n.encoding" value="UTF-8"/> 
+          <package name="default"  namespace="" extends="struts-default"><!--需要将struts-default改为-->
+               <action name="logout" class="com.rent.action.NavigAction">  
+              <result>/index.jsp</result>
+              </action>
+               <action name="update" class="com.rent.action.busineAction" method="update">  
+              <result>/Page/updateUserInfo.jsp</result>
+              </action>         
+               <action name="login" class="com.rent.action.LoginAction">  
+              <result>/login.jsp</result>
+              </action>
+              
+               <action name="checkIn" class="com.rent.action.showDateInfoAction" method="checkedRentInLegal">
+               <result>/rentInResult.jsp</result>  
+              </action>
+              <action name="checkOut" class="com.rent.action.showDateInfoAction" method="checkedRentOutLegal">
+               <result>/rentOutResult.jsp</result>  
+              </action>
+              <action name="rentIn" class="com.rent.action.busineAction" method="saveRentIn" >  
+              <result>/rentIn.jsp</result>
+              </action> 
+               <action name="userInfo" class="com.rent.action.busineAction" method="getUserInfo" >  
+              <result>/userInfo.jsp</result>
+              </action> 
+                <action name="updateUser" class="com.rent.action.busineAction" method="updateUserInfo" >  
+              <result>/userInfo.jsp</result>
+              </action>
+            
+              
+              <action name="showRentInData" class="com.rent.action.showDateInfoAction" method="showRentInInfo" >  
+              <result>/rentInResult.jsp</result>
+              </action>
+              <action name="showRentOutData" class="com.rent.action.showDateInfoAction" method="showRentOutInfo" >  
+              <result>/rentOutResult.jsp</result>
+              </action>
+              <action name="deleteRentIn" class="com.rent.action.showDateInfoAction" method="deleteRentIn" >  
+              <result>/rentInResult.jsp</result>
+              </action>
+              <action name="deleteRentOut" class="com.rent.action.showDateInfoAction" method="deleteRentOut" >  
+              <result>/rentOutResult.jsp</result>
+              </action> 
+              <action name="updateUserInfo" class="com.rent.action.busineAction" method="updateUserInfo" >  
+              <result>/Page/main.jsp</result>
+              </action>  
+                                <!-- 文件上传action -->  
+           <action name="rigester" class="com.rent.action.busineAction" method="rigester" >
+                <result>/account.jsp</result>
+                <result name="input">/error.jsp</result>
+         <interceptor-ref name="defaultStack">
+            <param name="fileUpload.allowedTypes">image/jpeg,image/gif,image/pjpeg</param>
+               <param name="fileUpload.maximumSize">409600</param>
+        </interceptor-ref>
+             <param name="uploadPath">E:\apache-tomcat-7.0.65\webapps\RentInfoSystem2\Image\</param>
+        </action>
+        
+         <action name="rentOut" class="com.rent.action.busineAction" method="saveRentOut" >
+                <result>/rentOut.jsp</result>
+                <result name="input">/error.jsp</result>
+         <interceptor-ref name="defaultStack">
+            <param name="fileUpload.allowedTypes">image/jpeg,image/gif,image/pjpeg</param>
+               <param name="fileUpload.maximumSize">409600</param>
+        </interceptor-ref>
+             <param name="uploadPath">E:\apache-tomcat-7.0.65\webapps\RentInfoSystem2\Image\</param>
+        </action>
+
+    </package>       
+</struts>
